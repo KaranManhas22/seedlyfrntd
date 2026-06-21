@@ -20,10 +20,10 @@ jobs:
           username: karan
           key: ${{ secrets.PROJECT }}
           script: |
-            cd /home/karan/my-app
+            cd /home/karan/
 
             git clone https://github.com/KaranManhas22/seedlyfrntd.git
-
+            cd /home/karan/seedlyfrntd
             npm install
 
             npm i pm2 -g
