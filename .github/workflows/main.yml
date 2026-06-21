@@ -28,4 +28,6 @@ jobs:
 
             npm run build || true
 
+            npm i pm2 -g
+
             pm2 restart app || pm2 start npm --name "app" -- run dev
