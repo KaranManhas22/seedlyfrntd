@@ -22,9 +22,11 @@ jobs:
           script: |
             cd /home/karan/my-app
 
-            git pull origin main
+            git clone https://github.com/KaranManhas22/seedlyfrntd.git
 
             npm install
+
+            npm i pm2 -g
 
             npm run build || true
 
