@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -17,10 +20,6 @@ jobs:
           username: karan
           key: ${{ secrets.PROJECT }}
           script: |
-            if [ ! -d "/home/karan/seedlyfrntd" ]; then
-              git clone https://github.com/KaranManhas22/seedlyfrntd.git /home/karan/seedlyfrntd
-            fi
-
             cd /home/karan/seedlyfrntd
 
             git pull origin main
@@ -29,9 +28,4 @@ jobs:
 
             npm run build || true
 
-            pm2 describe app > /dev/null
-            if [ $? -eq 0 ]; then
-              pm2 restart app
-            else
-              pm2 start npm --name app -- run dev
-            fi
+            pm2 restart app || pm2 start npm --name "app" -- run dev
