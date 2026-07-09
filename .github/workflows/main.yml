@@ -24,4 +24,5 @@ jobs:
             cd /home/umang/seedlyfrntd
             git pull origin main
             sudo npm i
+            sudo npm run build
             pm2 start npm --name "Seedly Frontend" -- run dev
